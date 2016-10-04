@@ -1,13 +1,14 @@
-
+require './scan'
 people = File.open("./people.csv")
 
+
 def numGuests(list)
-  invited = list.each_line.count
-  lines = list.each_line
-  lines do |line|
-    line.split(',')
-    return line[2]
+  guests = 0
+  list.each_line do |line|
+    info = line.split(',')
+    guests += info[2].to_i + 1
   end
+  return guests
 end
 
-puts numGuests(people)
+puts "There will be #{numGuests(people)} people at the party."
